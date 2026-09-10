@@ -270,9 +270,8 @@ function Navbar() {
                         {notifications.map((notification) => (
                           <div
                             key={notification._id}
-                            className={`notification-item ${
-                              notification.read ? "read" : "unread"
-                            }`}
+                            className={`notification-item ${notification.read ? "read" : "unread"
+                              }`}
                             onClick={() =>
                               handleNotificationClick(notification)
                             }
@@ -299,14 +298,14 @@ function Navbar() {
               </div>
 
               {/* PROFILE */}
-              <Link to="/profile" className="navbar-profile">
-                👤
+              <Link to="/profile" className="navbar-profile" aria-label="Profile">
+                <span className="profile-icon">👤</span>
               </Link>
 
-              {/* SETTINGS */}
-              <Link to="/settings" className="navbar-settings">
-                ⚙️
+              <Link to="/settings" className="navbar-settings" aria-label="Settings">
+                <span className="settings-icon">⚙</span>
               </Link>
+
             </>
           ) : (
             <>
