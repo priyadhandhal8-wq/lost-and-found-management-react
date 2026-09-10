@@ -1,0 +1,142 @@
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #172554,
+      #2563eb
+    );
+
+  padding: 30px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 430px;
+
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.2);
+
+  text-align: center;
+}
+
+.admin-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.admin-login-card h1 {
+  color: #172554;
+  margin-bottom: 5px;
+}
+
+.admin-login-subtitle {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.admin-login-card form {
+  text-align: left;
+}
+
+.admin-login-card label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #374151;
+
+  font-weight: 600;
+}
+
+.admin-login-card input {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  margin-bottom: 18px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.admin-login-card input:focus {
+  border-color: #2563eb;
+}
+
+.admin-login-card form button {
+  width: 100%;
+
+  border: none;
+
+  background: #2563eb;
+
+  color: white;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.admin-login-card form button:hover {
+  background: #1d4ed8;
+}
+
+.admin-login-card form button:disabled {
+  opacity: 0.7;
+
+  cursor: not-allowed;
+}
+
+.admin-login-message {
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  padding: 10px;
+
+  border-radius: 7px;
+
+  margin-bottom: 15px;
+
+  font-size: 14px;
+}
+
+.back-login-btn {
+  margin-top: 20px;
+
+  background: transparent;
+
+  border: none;
+
+  color: #2563eb;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.back-login-btn:hover {
+  text-decoration: underline;
+}

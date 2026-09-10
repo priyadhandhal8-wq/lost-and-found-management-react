@@ -1,0 +1,338 @@
+/* ==========================================
+   ADMIN USERS PAGE
+========================================== */
+
+.admin-users {
+  min-height: 100vh;
+  padding: 30px;
+  background: #f5f7fb;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.users-header h1 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 32px;
+}
+
+.users-header p {
+  margin: 7px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.users-header-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.back-dashboard-btn,
+.add-user-btn {
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.back-dashboard-btn {
+  background: #374151;
+  color: white;
+}
+
+.back-dashboard-btn:hover {
+  background: #111827;
+}
+
+.add-user-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.add-user-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================================
+   ADD / EDIT FORM
+========================================== */
+
+.user-form-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.form-header h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 22px;
+}
+
+.close-form-btn {
+  border: none;
+  background: #f3f4f6;
+  color: #374151;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.close-form-btn:hover {
+  background: #e5e7eb;
+}
+
+/* ==========================================
+   FORM GRID
+========================================== */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 7px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  padding: 11px 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 14px;
+  outline: none;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* ==========================================
+   FORM BUTTONS
+========================================== */
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.save-user-btn,
+.cancel-user-btn {
+  border: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.save-user-btn {
+  background: #16a34a;
+  color: white;
+}
+
+.save-user-btn:hover {
+  background: #15803d;
+}
+
+.cancel-user-btn {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.cancel-user-btn:hover {
+  background: #d1d5db;
+}
+
+/* ==========================================
+   USERS TABLE
+========================================== */
+
+.users-table-container {
+  background: white;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.users-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 750px;
+}
+
+.users-table-container th {
+  background: #111827;
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.users-table-container td {
+  padding: 15px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  font-size: 14px;
+}
+
+.users-table-container tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* ==========================================
+   ROLE BADGE
+========================================== */
+
+.role-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.role-badge.user {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.role-badge.admin {
+  background: #ede9fe;
+  color: #6b21a8;
+}
+
+/* ==========================================
+   USER ACTIONS
+========================================== */
+
+.user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-user-btn,
+.delete-user-btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.edit-user-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.edit-user-btn:hover {
+  background: #d97706;
+}
+
+.delete-user-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.delete-user-btn:hover {
+  background: #b91c1c;
+}
+
+/* ==========================================
+   NO USERS
+========================================== */
+
+.no-users {
+  background: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.no-users h2 {
+  color: #374151;
+}
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.admin-users h2 {
+  color: #374151;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+  .admin-users {
+    padding: 20px;
+  }
+
+  .users-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .users-header-buttons {
+    width: 100%;
+  }
+
+  .back-dashboard-btn,
+  .add-user-btn {
+    flex: 1;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .user-actions {
+    flex-direction: column;
+  }
+}

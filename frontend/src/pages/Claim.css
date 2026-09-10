@@ -1,0 +1,83 @@
+.claim-page {
+  min-height: 100vh;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #f4f7fb, #e9eef5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.claim-card {
+  width: 100%;
+  max-width: 650px;
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.claim-card h1 {
+  margin: 0 0 10px;
+  color: #1f2937;
+}
+
+.claim-info {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.claim-card label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.claim-card textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-size: 15px;
+  outline: none;
+}
+
+.claim-card textarea:focus {
+  border-color: #2563eb;
+}
+
+.claim-card button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.claim-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.claim-card .cancel-btn {
+  margin-top: 10px;
+  background: #6b7280;
+}
+
+.claim-error {
+  color: #dc2626;
+  margin-top: 12px;
+}
+
+.claim-success {
+  color: #16a34a;
+  margin-top: 12px;
+}

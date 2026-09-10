@@ -1,0 +1,684 @@
+/* ==========================================
+   ITEMS PAGE
+========================================== */
+
+.items-page {
+  min-height: 100vh;
+  padding: 40px 30px 70px;
+  background: linear-gradient(135deg, #f4f7fb, #eef2f7);
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.items-header {
+  max-width: 1200px;
+  margin: 0 auto 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.items-header h1 {
+  margin: 0 0 8px;
+
+  font-size: 34px;
+  font-weight: 700;
+
+  color: #172033;
+}
+
+.items-header p {
+  margin: 0;
+
+  font-size: 15px;
+  color: #667085;
+}
+
+/* ==========================================
+   BACK TO HOME BUTTON
+========================================== */
+
+.back-home-btn {
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  white-space: nowrap;
+}
+
+.back-home-btn:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
+}
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.items-error {
+  max-width: 1200px;
+
+  margin: 0 auto 25px;
+
+  padding: 15px 18px;
+
+  border-radius: 10px;
+
+  background: #fee2e2;
+
+  border: 1px solid #fecaca;
+
+  color: #b91c1c;
+
+  font-size: 14px;
+}
+
+/* ==========================================
+   ITEMS GRID
+========================================== */
+
+.items-grid {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+/* ==========================================
+   ITEM CARD
+========================================== */
+
+.item-card {
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+
+  transition: all 0.25s ease;
+
+  border: 1px solid #edf0f4;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+}
+
+/* ==========================================
+   CARD HEADER
+========================================== */
+
+.item-card-header {
+  padding: 17px 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border-bottom: 1px solid #f0f2f5;
+}
+
+/* ==========================================
+   LOST / FOUND BADGE
+========================================== */
+
+.item-type {
+  display: inline-block;
+
+  padding: 6px 11px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.item-type.lost {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+.item-type.found {
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+/* ==========================================
+   ITEM STATUS
+========================================== */
+
+.item-status {
+  display: inline-block;
+
+  padding: 6px 11px;
+
+  border-radius: 20px;
+
+  background: #f3f4f6;
+
+  color: #4b5563;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* ==========================================
+   ITEM CONTENT
+========================================== */
+
+.item-card-content {
+  padding: 22px;
+}
+
+.item-card-content h2 {
+  margin: 0 0 16px;
+
+  font-size: 21px;
+
+  font-weight: 700;
+
+  color: #172033;
+
+  line-height: 1.3;
+}
+
+.item-card-content p {
+  margin: 9px 0;
+
+  color: #667085;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+.item-card-content p strong {
+  color: #344054;
+}
+
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+.item-description {
+  margin-top: 15px !important;
+
+  padding-top: 13px;
+
+  border-top: 1px solid #edf0f4;
+
+  color: #475467 !important;
+
+  line-height: 1.6 !important;
+}
+
+/* ==========================================
+   VIEW DETAILS BUTTON
+========================================== */
+
+.view-details-btn {
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 12px 15px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.view-details-btn:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* ==========================================
+   EMPTY ITEMS
+========================================== */
+
+.empty-items {
+  max-width: 600px;
+
+  margin: 70px auto;
+
+  padding: 45px 30px;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.empty-items h2 {
+  margin: 0 0 12px;
+
+  color: #172033;
+
+  font-size: 24px;
+}
+
+.empty-items p {
+  margin: 0 0 22px;
+
+  color: #667085;
+
+  font-size: 15px;
+}
+
+.empty-items button {
+  border: none;
+
+  padding: 12px 22px;
+
+  border-radius: 9px;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.empty-items button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.items-loading {
+  min-height: 70vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.items-loading h2 {
+  margin: 0;
+
+  color: #2563eb;
+
+  font-size: 22px;
+}
+
+/* ==========================================
+   RESPONSIVE - TABLET
+========================================== */
+
+@media (max-width: 950px) {
+  .items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .items-page {
+    padding: 35px 25px 60px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE - MOBILE
+========================================== */
+
+@media (max-width: 650px) {
+  .items-page {
+    padding: 25px 15px 50px;
+  }
+
+  .items-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    margin-bottom: 25px;
+  }
+
+  .items-header h1 {
+    font-size: 28px;
+  }
+
+  .items-header p {
+    font-size: 14px;
+  }
+
+  .back-home-btn {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .items-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .item-card-content {
+    padding: 20px;
+  }
+
+  .item-card-content h2 {
+    font-size: 20px;
+  }
+
+  .item-card-header {
+    padding: 15px 17px;
+  }
+
+  .empty-items {
+    margin: 45px auto;
+
+    padding: 35px 20px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 400px) {
+  .items-page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .item-card-content {
+    padding: 17px;
+  }
+
+  .item-card-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .item-type,
+  .item-status {
+    font-size: 10px;
+  }
+}
+/* ==========================================
+   SEARCH & FILTER SECTION
+========================================== */
+
+.items-filters {
+  width: 90%;
+  max-width: 1200px;
+  margin: 25px auto 10px;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+
+  padding: 20px;
+
+  background: #ffffff;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==========================================
+   SEARCH BOX
+========================================== */
+
+.filter-search {
+  flex: 1;
+}
+
+.filter-search input {
+  width: 100%;
+  height: 45px;
+
+  padding: 0 15px;
+
+  border: 1px solid #d6dce5;
+  border-radius: 8px;
+
+  font-size: 15px;
+  outline: none;
+
+  box-sizing: border-box;
+}
+
+.filter-search input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.filter-search input::placeholder {
+  color: #888;
+}
+
+
+/* ==========================================
+   FILTER GROUP
+========================================== */
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.filter-group select {
+  height: 45px;
+  min-width: 150px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d6dce5;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #333;
+
+  font-size: 14px;
+
+  cursor: pointer;
+  outline: none;
+}
+
+.filter-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ==========================================
+   CLEAR FILTER BUTTON
+========================================== */
+
+.clear-filters-btn {
+  height: 45px;
+
+  padding: 0 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.clear-filters-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   RESULT COUNT
+========================================== */
+
+.items-result-count {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 15px auto;
+
+  color: #666;
+  font-size: 14px;
+}
+
+.items-result-count strong {
+  color: #2563eb;
+}
+
+
+/* ==========================================
+   NO MATCHING ITEMS
+========================================== */
+
+.no-results {
+  width: 90%;
+  max-width: 600px;
+
+  margin: 40px auto;
+
+  padding: 35px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.no-results h2 {
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.no-results p {
+  color: #666;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+  .items-filters {
+    width: 88%;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 12px;
+
+    padding: 15px;
+  }
+
+  .filter-search {
+    width: 100%;
+  }
+
+  .filter-search input {
+    width: 100%;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-group select {
+    width: 100%;
+  }
+
+  .clear-filters-btn {
+    width: 100%;
+  }
+
+  .items-result-count {
+    width: 88%;
+  }
+}

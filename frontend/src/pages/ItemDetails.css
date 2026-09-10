@@ -1,0 +1,819 @@
+/* ==========================================
+   ITEM DETAILS PAGE
+========================================== */
+
+.item-details-page {
+  min-height: 100vh;
+  padding: 40px 20px 70px;
+  background: linear-gradient(135deg, #f4f7fb, #eef2f7);
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   MAIN CARD
+========================================== */
+
+.item-details-card {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
+.back-btn {
+  border: none;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #e2e8f0;
+  transform: translateX(-3px);
+}
+
+/* ==========================================
+   MAIN ITEM CONTENT
+========================================== */
+
+.item-details-content {
+  display: grid;
+  grid-template-columns: 430px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* ==========================================
+   MAIN ITEM IMAGE
+========================================== */
+
+.item-details-image {
+  width: 100%;
+  height: 380px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================
+   NO IMAGE
+========================================== */
+
+.no-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #94a3b8;
+  font-size: 45px;
+}
+
+.no-image span {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   ITEM INFORMATION
+========================================== */
+
+.item-information {
+  padding: 10px 0;
+  min-width: 0;
+}
+
+.item-information h1 {
+  margin: 18px 0 15px;
+  color: #0f172a;
+  font-size: 34px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.description {
+  margin-bottom: 25px;
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.item-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lost-badge,
+.found-badge,
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lost-badge {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.found-badge {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.status-badge {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+/* ==========================================
+   DETAIL ROW
+========================================== */
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 15px;
+}
+
+.detail-row strong {
+  color: #334155;
+}
+
+.detail-row span {
+  color: #64748b;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* ==========================================
+   MATCH SECTION
+========================================== */
+
+.matches-section {
+  margin-top: 55px;
+  padding-top: 35px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.matches-header {
+  margin-bottom: 25px;
+}
+
+.matches-header h2 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 28px;
+}
+
+.matches-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* ==========================================
+   MATCH GRID
+========================================== */
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+/* ==========================================
+   MATCH CARD
+========================================== */
+
+.match-card {
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   MATCH IMAGE
+========================================== */
+
+.match-image {
+  width: 100%;
+  height: 220px;
+  background: #f8fafc;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.match-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.match-no-image {
+  color: #94a3b8;
+  font-size: 45px;
+}
+
+/* ==========================================
+   MATCH CONTENT
+========================================== */
+
+.match-content {
+  padding: 20px;
+}
+
+.match-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.match-score {
+  padding: 7px 12px;
+  background: #ecfdf5;
+  color: #059669;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.match-content h3 {
+  margin: 8px 0;
+  color: #0f172a;
+  font-size: 22px;
+  word-break: break-word;
+}
+
+.match-description {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+
+  overflow: hidden;
+}
+
+/* ==========================================
+   MATCH DETAILS
+========================================== */
+
+.match-details {
+  margin-top: 15px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.match-details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 9px 0;
+  font-size: 14px;
+}
+
+.match-details strong {
+  color: #334155;
+}
+
+.match-details span {
+  color: #64748b;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* ==========================================
+   MATCH ACTIONS
+========================================== */
+
+.match-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.view-match-btn,
+.claim-match-btn {
+  flex: 1;
+  border: none;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.view-match-btn {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.view-match-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.claim-match-btn {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.claim-match-btn:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.details-loading,
+.matches-loading {
+  padding: 60px 20px;
+  text-align: center;
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.details-error,
+.matches-error {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 20px;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* ==========================================
+   NO MATCHES
+========================================== */
+
+.no-matches {
+  padding: 45px 20px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.no-match-icon {
+  margin-bottom: 10px;
+  font-size: 45px;
+}
+
+.no-matches h3 {
+  margin: 5px 0 8px;
+  color: #334155;
+  font-size: 20px;
+}
+
+.no-matches p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 850px) {
+
+  .item-details-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .item-details-image {
+    height: 350px;
+  }
+
+  .matches-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .item-details-page {
+    padding: 20px 12px 50px;
+  }
+
+  .item-details-card {
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  .back-btn {
+    margin-bottom: 20px;
+  }
+
+  .item-details-image {
+    height: 280px;
+    border-radius: 14px;
+  }
+
+  .item-information h1 {
+    font-size: 27px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .detail-row span {
+    text-align: left;
+  }
+
+  .matches-section {
+    margin-top: 40px;
+    padding-top: 25px;
+  }
+
+  .matches-header h2 {
+    font-size: 23px;
+  }
+
+  .match-image {
+    height: 200px;
+  }
+
+  .match-actions {
+    flex-direction: column;
+  }
+
+  .view-match-btn,
+  .claim-match-btn {
+    width: 100%;
+  }
+}
+/* ==========================================
+   CLAIM SECTION
+========================================== */
+
+.claim-section {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ==========================================
+   CLAIM ITEM BUTTON
+========================================== */
+
+.claim-item-btn {
+  width: 100%;
+  padding: 13px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.claim-item-btn:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 7px 16px rgba(37, 99, 235, 0.2);
+}
+
+/* ==========================================
+   CLAIM FORM
+========================================== */
+
+.claim-form {
+  padding: 20px;
+
+  border-radius: 14px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+}
+
+.claim-form h3 {
+  margin: 0 0 7px;
+
+  color: #172033;
+
+  font-size: 20px;
+}
+
+.claim-form p {
+  margin: 0 0 15px;
+
+  color: #667085;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+/* ==========================================
+   CLAIM TEXTAREA
+========================================== */
+
+.claim-form textarea {
+  width: 100%;
+
+  min-height: 120px;
+
+  padding: 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d0d5dd;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #172033;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  resize: vertical;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.claim-form textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.claim-form textarea::placeholder {
+  color: #98a2b3;
+}
+
+/* ==========================================
+   CLAIM FORM BUTTONS
+========================================== */
+
+.claim-form-actions {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+.submit-claim-btn,
+.cancel-claim-btn {
+  flex: 1;
+
+  height: 42px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* ==========================================
+   SUBMIT
+========================================== */
+
+.submit-claim-btn {
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.submit-claim-btn:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   CANCEL
+========================================== */
+
+.cancel-claim-btn {
+  background: #e5e7eb;
+
+  color: #374151;
+}
+
+.cancel-claim-btn:hover {
+  background: #d1d5db;
+
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   DISABLED
+========================================== */
+
+.submit-claim-btn:disabled,
+.cancel-claim-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* ==========================================
+   CLAIM STATUS MESSAGE
+========================================== */
+
+.claim-status-message {
+  margin-top: 12px;
+
+  padding: 11px 14px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+.claim-status-message.success {
+  background: #dcfce7;
+
+  border: 1px solid #bbf7d0;
+
+  color: #15803d;
+}
+
+.claim-status-message.error {
+  background: #fee2e2;
+
+  border: 1px solid #fecaca;
+
+  color: #b91c1c;
+}
+
+/* ==========================================
+   LOGIN TO CLAIM
+========================================== */
+
+.login-to-claim {
+  margin-top: 25px;
+
+  padding: 18px;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  text-align: center;
+}
+
+.login-to-claim p {
+  margin: 0 0 12px;
+
+  color: #667085;
+
+  font-size: 14px;
+}
+
+.login-to-claim button {
+  padding: 10px 25px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.login-to-claim button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .claim-form {
+    padding: 16px;
+  }
+
+  .claim-form-actions {
+    flex-direction: column;
+  }
+
+  .submit-claim-btn,
+  .cancel-claim-btn {
+    width: 100%;
+  }
+
+}
+.owner-item-message {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 40px;
+}
