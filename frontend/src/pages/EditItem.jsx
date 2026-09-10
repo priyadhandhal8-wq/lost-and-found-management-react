@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditItem.css";
+import API_URL from "../api";
 
 function EditItem() {
     const { id } = useParams();
@@ -36,7 +37,7 @@ function EditItem() {
     const fetchItem = async () => {
         try {
             const response = await fetch(
-                `http://localhost:5000/api/items/${id}`
+                `${API_URL}/api/items/${id}`
             );
 
             const data = await response.json();
@@ -141,7 +142,7 @@ function EditItem() {
             }
 
             const response = await fetch(
-                `http://localhost:5000/api/items/${id}`,
+                `${API_URL}/api/items/${id}`,
                 {
                     method: "PUT",
                     headers: {
@@ -321,7 +322,7 @@ function EditItem() {
                                 </p>
 
                                 <img
-                                    src={`http://localhost:5000/uploads/${currentImage}`}
+                                    src={`${API_URL}/uploads/${currentImage}`}
                                     alt={formData.itemName}
                                     className="current-item-image"
                                 />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Claim.css";
+import API_URL from "../api";
 
 function Claim() {
     const { itemId } = useParams();
@@ -27,7 +28,7 @@ function Claim() {
             const token = localStorage.getItem("token");
 
             const response = await fetch(
-                `http://localhost:5000/api/claims/${itemId}`,
+                `${API_URL}/api/claims/${itemId}`,
                 {
                     method: "POST",
                     headers: {

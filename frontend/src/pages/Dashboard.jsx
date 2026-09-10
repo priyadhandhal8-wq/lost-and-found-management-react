@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import API_URL from "../api";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -38,15 +39,15 @@ function Dashboard() {
 
       const [itemsResponse, claimsResponse, receivedResponse] =
         await Promise.all([
-          fetch("http://localhost:5000/api/items/my-items", {
+          fetch(`${API_URL}/api/items/my-items`, {
             headers,
           }),
 
-          fetch("http://localhost:5000/api/claims/my-claims", {
+          fetch(`${API_URL}/api/claims/my-claims`, {
             headers,
           }),
 
-          fetch("http://localhost:5000/api/claims/received", {
+          fetch(`${API_URL}/api/claims/received`, {
             headers,
           }),
         ]);
@@ -138,7 +139,7 @@ function Dashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/claims/${claimId}/approve`,
+        `${API_URL}/api/claims/${claimId}/approve`,
         {
           method: "PUT",
           headers: {
@@ -180,7 +181,7 @@ function Dashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/claims/${claimId}/reject`,
+        `${API_URL}/api/claims/${claimId}/reject`,
         {
           method: "PUT",
           headers: {
@@ -227,7 +228,7 @@ function Dashboard() {
       }));
 
       const response = await fetch(
-        `http://localhost:5000/api/claims/${claimId}/contact-request`,
+        `${API_URL}/api/claims/${claimId}/contact-request`,
         {
           method: "POST",
           headers: {
@@ -281,7 +282,7 @@ function Dashboard() {
       }));
 
       const response = await fetch(
-        `http://localhost:5000/api/claims/${claimId}/contact-share`,
+        `${API_URL}/api/claims/${claimId}/contact-share`,
         {
           method: "PUT",
           headers: {
@@ -335,7 +336,7 @@ function Dashboard() {
       }));
 
       const response = await fetch(
-        `http://localhost:5000/api/claims/${claimId}/contact-decline`,
+        `${API_URL}/api/claims/${claimId}/contact-decline`,
         {
           method: "PUT",
           headers: {
@@ -381,7 +382,7 @@ function Dashboard() {
       }));
 
       const response = await fetch(
-        `http://localhost:5000/api/claims/${claimId}/contact`,
+        `${API_URL}/api/claims/${claimId}/contact`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

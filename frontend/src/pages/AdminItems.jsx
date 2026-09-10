@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminItems.css";
+import API_URL from "../api";
 
 function AdminItems() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ function AdminItems() {
   const fetchItems = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/admin/items",
+        `${API_URL}/api/admin/items`,
         {
           headers: {
             Authorization: `Bearer ${adminToken}`,
@@ -62,7 +63,7 @@ function AdminItems() {
   const fetchUsers = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/admin/users",
+        `${API_URL}/api/admin/users`,
         {
           headers: {
             Authorization: `Bearer ${adminToken}`,
@@ -171,12 +172,12 @@ function AdminItems() {
 
     try {
       let url =
-        "http://localhost:5000/api/admin/items";
+        `${API_URL}/api/admin/items`;
 
       let method = "POST";
 
       if (editingItem) {
-        url = `http://localhost:5000/api/admin/items/${editingItem._id}`;
+        url = `${API_URL}/api/admin/items/${editingItem._id}`;
         method = "PUT";
       }
 
@@ -221,7 +222,7 @@ function AdminItems() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/items/${itemId}`,
+        `${API_URL}/api/admin/items/${itemId}`,
         {
           method: "DELETE",
           headers: {

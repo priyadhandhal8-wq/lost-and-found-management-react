@@ -1,6 +1,6 @@
-
 import { useEffect, useState } from "react";
 import "./Profile.css";
+import API_URL from "../api";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -22,7 +22,7 @@ function Profile() {
   const fetchProfile = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/profile",
+        `${API_URL}/api/users/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ function Profile() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/profile",
+        `${API_URL}/api/users/profile`,
         {
           method: "PUT",
           headers: {
@@ -293,4 +293,3 @@ function Profile() {
 }
 
 export default Profile;
-

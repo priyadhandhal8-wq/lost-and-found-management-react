@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ReportItem.css";
+import API_URL from "../api";
 
 function ReportLost() {
   const navigate = useNavigate();
@@ -99,7 +100,7 @@ function ReportLost() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/items",
+        `${API_URL}/api/items`,
         {
           method: "POST",
 

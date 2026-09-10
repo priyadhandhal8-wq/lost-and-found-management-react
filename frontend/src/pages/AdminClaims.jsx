@@ -1,6 +1,8 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminClaims.css";
+import API_URL from "../api";
 
 function AdminClaims() {
     const navigate = useNavigate();
@@ -22,7 +24,7 @@ function AdminClaims() {
     const fetchClaims = async () => {
         try {
             const response = await fetch(
-                "http://localhost:5000/api/admin/claims",
+                `${API_URL}/api/admin/claims`,
                 {
                     method: "GET",
                     headers: {
@@ -77,7 +79,7 @@ function AdminClaims() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/admin/claims/${claimId}/approve`,
+                `${API_URL}/api/admin/claims/${claimId}/approve`,
                 {
                     method: "PUT",
                     headers: {
@@ -115,7 +117,7 @@ function AdminClaims() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/admin/claims/${claimId}/reject`,
+                `${API_URL}/api/admin/claims/${claimId}/reject`,
                 {
                     method: "PUT",
                     headers: {
@@ -139,7 +141,11 @@ function AdminClaims() {
             alert("Something went wrong");
         }
     };
+
+    // ==========================================
     // DELETE CLAIM
+    // ==========================================
+
     const deleteClaim = async (claimId) => {
         const confirmDelete = window.confirm(
             "Are you sure you want to delete this claim?"
@@ -149,7 +155,7 @@ function AdminClaims() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/admin/claims/${claimId}`,
+                `${API_URL}/api/admin/claims/${claimId}`,
                 {
                     method: "DELETE",
                     headers: {
@@ -177,11 +183,15 @@ function AdminClaims() {
             alert("Something went wrong");
         }
     };
-    //update calim
+
+    // ==========================================
+    // UPDATE CLAIM
+    // ==========================================
+
     const updateClaim = async (claimId) => {
         try {
             const response = await fetch(
-                `http://localhost:5000/api/admin/claims/${claimId}`,
+                `${API_URL}/api/admin/claims/${claimId}`,
                 {
                     method: "PUT",
                     headers: {
@@ -212,7 +222,6 @@ function AdminClaims() {
             alert("Something went wrong");
         }
     };
-
 
     // ==========================================
     // LOADING
@@ -248,6 +257,7 @@ function AdminClaims() {
 
     return (
         <div className="admin-claims">
+
             {editingClaim && (
                 <div className="claim-edit-form">
 
@@ -335,6 +345,7 @@ function AdminClaims() {
 
             {claims.length === 0 ? (
                 <div className="no-claims">
+
                     <div>🤝</div>
 
                     <h2>No Claims Found</h2>
@@ -343,6 +354,7 @@ function AdminClaims() {
                         There are currently no claims
                         submitted by users.
                     </p>
+
                 </div>
             ) : (
                 <div className="claims-table-container">
@@ -417,15 +429,13 @@ function AdminClaims() {
 
                                     <td>
                                         <span
-                                            className={`claim-status ${claim.status?.toLowerCase()
-                                                }`}
+                                            className={`claim-status ${claim.status?.toLowerCase()}`}
                                         >
                                             {claim.status}
                                         </span>
                                     </td>
 
                                     {/* ACTION */}
-
 
                                     <td>
                                         <div className="claim-actions">
@@ -435,7 +445,9 @@ function AdminClaims() {
                                                     <button
                                                         className="approve-btn"
                                                         onClick={() =>
-                                                            approveClaim(claim._id)
+                                                            approveClaim(
+                                                                claim._id
+                                                            )
                                                         }
                                                     >
                                                         ✓ Approve
@@ -444,19 +456,27 @@ function AdminClaims() {
                                                     <button
                                                         className="reject-btn"
                                                         onClick={() =>
-                                                            rejectClaim(claim._id)
+                                                            rejectClaim(
+                                                                claim._id
+                                                            )
                                                         }
                                                     >
                                                         ✕ Reject
                                                     </button>
                                                 </>
                                             )}
+
                                             <button
                                                 className="edit-claim-btn"
                                                 onClick={() => {
                                                     setEditingClaim(claim);
-                                                    setEditMessage(claim.message || "");
-                                                    setEditStatus(claim.status || "Pending");
+                                                    setEditMessage(
+                                                        claim.message || ""
+                                                    );
+                                                    setEditStatus(
+                                                        claim.status ||
+                                                        "Pending"
+                                                    );
                                                 }}
                                             >
                                                 ✏️ Edit
@@ -465,7 +485,9 @@ function AdminClaims() {
                                             <button
                                                 className="delete-claim-btn"
                                                 onClick={() =>
-                                                    deleteClaim(claim._id)
+                                                    deleteClaim(
+                                                        claim._id
+                                                    )
                                                 }
                                             >
                                                 🗑 Delete
@@ -473,7 +495,6 @@ function AdminClaims() {
 
                                         </div>
                                     </td>
-
 
                                 </tr>
 
@@ -491,3 +512,4 @@ function AdminClaims() {
 }
 
 export default AdminClaims;
+

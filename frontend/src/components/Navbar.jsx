@@ -1,624 +1,330 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import API_URL from "../api";
 
 function Navbar() {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
+  const [user, setUser] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user")) || {};
+    } catch {
+      return {};
+    }
+  });
+
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
-  const [showNotifications, setShowNotifications] =
-    useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const notificationRef = useRef(null);
 
-  // ==========================================
+  // ===============================
   // FETCH NOTIFICATIONS
-  // ==========================================
-
+  // ===============================
   const fetchNotifications = async () => {
-    const currentToken = localStorage.getItem("token");
-
-    if (!currentToken) {
-      return;
-    }
+    if (!token) return;
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/notifications",
+        `${API_URL}/api/notifications`,
         {
           headers: {
-            Authorization: `Bearer ${currentToken}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      if (response.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-
-        navigate("/login");
-        return;
+      if (response.ok) {
+        const data = await response.json();
+        setNotifications(data);
       }
-
-      if (!response.ok) {
-        return;
-      }
-
-      const data = await response.json();
-
-      setNotifications(
-        Array.isArray(data) ? data : []
-      );
     } catch (error) {
-      console.error(
-        "Notification fetch error:",
-        error
-      );
+      console.error("Error fetching notifications:", error);
     }
   };
 
-  // ==========================================
+  // ===============================
   // FETCH UNREAD COUNT
-  // ==========================================
-
+  // ===============================
   const fetchUnreadCount = async () => {
-    const currentToken = localStorage.getItem("token");
-
-    if (!currentToken) {
-      return;
-    }
+    if (!token) return;
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/notifications/unread-count",
+        `${API_URL}/api/notifications/unread-count`,
         {
           headers: {
-            Authorization: `Bearer ${currentToken}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      if (!response.ok) {
-        return;
+      if (response.ok) {
+        const data = await response.json();
+        setUnreadCount(data.count || 0);
       }
-
-      const data = await response.json();
-
-      setUnreadCount(data.count || 0);
     } catch (error) {
-      console.error(
-        "Unread count error:",
-        error
-      );
+      console.error("Error fetching unread count:", error);
     }
   };
 
-  // ==========================================
-  // LOAD NOTIFICATIONS
-  // ==========================================
-
+  // ===============================
+  // LOAD USER + NOTIFICATIONS
+  // ===============================
   useEffect(() => {
-    if (!token) {
-      return;
+    const storedUser = localStorage.getItem("user");
+
+    try {
+      setUser(storedUser ? JSON.parse(storedUser) : {});
+    } catch {
+      setUser({});
     }
 
-    fetchNotifications();
-    fetchUnreadCount();
-
-    const interval = setInterval(() => {
+    if (token) {
       fetchNotifications();
       fetchUnreadCount();
-    }, 10000);
-
-    return () => clearInterval(interval);
+    }
   }, [token]);
 
-  // ==========================================
-  // CLOSE DROPDOWN WHEN CLICKING OUTSIDE
-  // ==========================================
-
+  // ===============================
+  // CLOSE NOTIFICATION DROPDOWN
+  // ===============================
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         notificationRef.current &&
-        !notificationRef.current.contains(
-          event.target
-        )
+        !notificationRef.current.contains(event.target)
       ) {
         setShowNotifications(false);
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  // ==========================================
-  // MARK SINGLE NOTIFICATION AS READ
-  // ==========================================
-
+  // ===============================
+  // MARK NOTIFICATION AS READ
+  // ===============================
   const markAsRead = async (notificationId) => {
-    const currentToken =
-      localStorage.getItem("token");
-
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/notifications/${notificationId}/read`,
+      await fetch(
+        `${API_URL}/api/notifications/${notificationId}/read`,
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${currentToken}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      if (!response.ok) {
-        return;
-      }
-
-      setNotifications((previous) =>
-        previous.map((notification) =>
-          notification._id === notificationId
-            ? {
-                ...notification,
-                isRead: true,
-              }
-            : notification
-        )
-      );
-
-      setUnreadCount((previous) =>
-        previous > 0 ? previous - 1 : 0
-      );
+      fetchNotifications();
+      fetchUnreadCount();
     } catch (error) {
-      console.error(
-        "Mark notification error:",
-        error
-      );
+      console.error("Error marking notification as read:", error);
     }
   };
 
-  // ==========================================
+  // ===============================
   // MARK ALL AS READ
-  // ==========================================
-
+  // ===============================
   const markAllAsRead = async () => {
-    const currentToken =
-      localStorage.getItem("token");
-
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/notifications/read-all",
+      await fetch(
+        `${API_URL}/api/notifications/read-all`,
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${currentToken}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      if (!response.ok) {
-        return;
-      }
-
-      setNotifications((previous) =>
-        previous.map((notification) => ({
-          ...notification,
-          isRead: true,
-        }))
-      );
-
-      setUnreadCount(0);
+      fetchNotifications();
+      fetchUnreadCount();
     } catch (error) {
-      console.error(
-        "Mark all notifications error:",
-        error
-      );
+      console.error("Error marking all notifications as read:", error);
     }
   };
 
-  // ==========================================
+  // ===============================
   // NOTIFICATION CLICK
-  // ==========================================
-
-  const handleNotificationClick = async (
-    notification
-  ) => {
-    if (!notification.isRead) {
+  // ===============================
+  const handleNotificationClick = async (notification) => {
+    if (!notification.read) {
       await markAsRead(notification._id);
     }
 
     setShowNotifications(false);
 
-    // CONTACT REQUEST
+    // Claim related notification
     if (
-      notification.type ===
-      "CONTACT_REQUEST"
+      notification.type === "NEW_CLAIM" ||
+      notification.type === "CLAIM_APPROVED" ||
+      notification.type === "CLAIM_REJECTED"
     ) {
-      navigate("/dashboard", {
-        state: {
-          notificationType:
-            "CONTACT_REQUEST",
-          claimId:
-            notification.relatedClaim?._id,
-        },
-      });
-
+      navigate("/my-claims");
       return;
     }
 
-    // CONTACT SHARED
-    if (
-      notification.type ===
-      "CONTACT_SHARED"
-    ) {
-      navigate("/dashboard", {
-        state: {
-          notificationType:
-            "CONTACT_SHARED",
-          claimId:
-            notification.relatedClaim?._id,
-        },
-      });
-
+    // Item match notification
+    if (notification.type === "ITEM_MATCH") {
+      if (notification.item?._id) {
+        navigate(`/items/${notification.item._id}`);
+      } else {
+        navigate("/items");
+      }
       return;
     }
 
-    // CONTACT DECLINED
-    if (
-      notification.type ===
-      "CONTACT_DECLINED"
-    ) {
-      navigate("/dashboard", {
-        state: {
-          notificationType:
-            "CONTACT_DECLINED",
-          claimId:
-            notification.relatedClaim?._id,
-        },
-      });
-
-      return;
-    }
-
-    // NEW CLAIM
-    if (
-      notification.type ===
-      "NEW_CLAIM"
-    ) {
-      navigate("/dashboard", {
-        state: {
-          notificationType:
-            "NEW_CLAIM",
-          claimId:
-            notification.relatedClaim?._id,
-        },
-      });
-
-      return;
-    }
-
-    // CLAIM APPROVED
-    if (
-      notification.type ===
-      "CLAIM_APPROVED"
-    ) {
-      navigate("/dashboard", {
-        state: {
-          notificationType:
-            "CLAIM_APPROVED",
-          claimId:
-            notification.relatedClaim?._id,
-        },
-      });
-
-      return;
-    }
-
-    // CLAIM REJECTED
-    if (
-      notification.type ===
-      "CLAIM_REJECTED"
-    ) {
-      navigate("/dashboard", {
-        state: {
-          notificationType:
-            "CLAIM_REJECTED",
-          claimId:
-            notification.relatedClaim?._id,
-        },
-      });
-
-      return;
-    }
-
-    // OTHER NOTIFICATIONS
-    if (notification.relatedItem?._id) {
-      navigate(
-        `/items/${notification.relatedItem._id}`
-      );
-    }
+    // Default
+    navigate("/notifications");
   };
 
-  // ==========================================
-  // TIME FORMAT
-  // ==========================================
-
-  const formatTime = (date) => {
-    if (!date) {
-      return "";
-    }
-
-    const notificationDate = new Date(date);
-    const now = new Date();
-
-    const difference = Math.floor(
-      (now - notificationDate) / 1000
-    );
-
-    if (difference < 60) {
-      return "Just now";
-    }
-
-    if (difference < 3600) {
-      return `${Math.floor(
-        difference / 60
-      )} min ago`;
-    }
-
-    if (difference < 86400) {
-      return `${Math.floor(
-        difference / 3600
-      )} hr ago`;
-    }
-
-    return notificationDate.toLocaleDateString();
-  };
-
-  // ==========================================
-  // UI
-  // ==========================================
-
+  // ===============================
+  // NAVBAR
+  // ===============================
   return (
     <nav className="navbar">
+      <div className="navbar-container">
 
-      {/* LOGO */}
-
-      <div className="logo">
-        Lost & Found
-      </div>
-
-      {/* NAV LINKS */}
-
-      <div className="nav-links">
-
-        <Link to="/">
-          Home
+        {/* LOGO */}
+        <Link to="/" className="navbar-logo">
+          Lost & Found
         </Link>
 
-        <Link to="/items">
-          Items
-        </Link>
+        {/* NAVIGATION LINKS */}
+        <div className="navbar-links">
 
-        {token ? (
-          <>
-            {/* DASHBOARD */}
+          <Link to="/">Home</Link>
 
-            <Link to="/dashboard">
-              Dashboard
-            </Link>
+          <Link to="/items">Items</Link>
 
-            {/* MY ITEMS */}
+          {token && (
+            <>
+              <Link to="/report-lost">Report Lost</Link>
+              <Link to="/report-found">Report Found</Link>
+              <Link to="/dashboard">Dashboard</Link>
+            </>
+          )}
 
-            <Link to="/my-items">
-              My Items
-            </Link>
+        </div>
 
-            {/* SETTINGS */}
+        {/* RIGHT SIDE */}
+        <div className="navbar-right">
 
-            <Link to="/settings">
-              Settings
-            </Link>
-
-            {/* NOTIFICATIONS */}
-
-            <div
-              className="notification-wrapper"
-              ref={notificationRef}
-            >
-
-              <button
-                className="notification-button"
-                onClick={() =>
-                  setShowNotifications(
-                    !showNotifications
-                  )
-                }
-                aria-label="Notifications"
+          {token ? (
+            <>
+              {/* NOTIFICATIONS */}
+              <div
+                className="notification-container"
+                ref={notificationRef}
               >
-                🔔
+                <button
+                  className="notification-button"
+                  onClick={() =>
+                    setShowNotifications(!showNotifications)
+                  }
+                  type="button"
+                >
+                  🔔
 
-                {unreadCount > 0 && (
-                  <span className="notification-badge">
-                    {unreadCount > 99
-                      ? "99+"
-                      : unreadCount}
-                  </span>
-                )}
-              </button>
+                  {unreadCount > 0 && (
+                    <span className="notification-badge">
+                      {unreadCount}
+                    </span>
+                  )}
+                </button>
 
-              {/* NOTIFICATION DROPDOWN */}
+                {showNotifications && (
+                  <div className="notification-dropdown">
 
-              {showNotifications && (
-                <div className="notification-dropdown">
+                    <div className="notification-header">
+                      <h3>Notifications</h3>
 
-                  {/* HEADER */}
+                      {unreadCount > 0 && (
+                        <button
+                          type="button"
+                          onClick={markAllAsRead}
+                        >
+                          Mark all read
+                        </button>
+                      )}
+                    </div>
 
-                  <div className="notification-header">
+                    {notifications.length === 0 ? (
+                      <div className="no-notifications">
+                        No notifications
+                      </div>
+                    ) : (
+                      <div className="notification-list">
 
-                    <h3>
-                      Notifications
-                    </h3>
+                        {notifications.map((notification) => (
+                          <div
+                            key={notification._id}
+                            className={`notification-item ${
+                              notification.read ? "read" : "unread"
+                            }`}
+                            onClick={() =>
+                              handleNotificationClick(notification)
+                            }
+                          >
+                            <div className="notification-message">
+                              {notification.message}
+                            </div>
 
-                    {unreadCount > 0 && (
-                      <button
-                        className="mark-all-btn"
-                        onClick={
-                          markAllAsRead
-                        }
-                      >
-                        Mark all as read
-                      </button>
+                            {notification.createdAt && (
+                              <div className="notification-time">
+                                {new Date(
+                                  notification.createdAt
+                                ).toLocaleString()}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+
+                      </div>
                     )}
 
                   </div>
+                )}
+              </div>
 
-                  {/* NO NOTIFICATIONS */}
+              {/* PROFILE */}
+              <Link to="/profile" className="navbar-profile">
+                👤
+              </Link>
 
-                  {notifications.length === 0 ? (
-                    <div className="no-notifications">
+              {/* SETTINGS */}
+              <Link to="/settings" className="navbar-settings">
+                ⚙️
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="navbar-login">
+                Login
+              </Link>
 
-                      <div className="empty-bell">
-                        🔕
-                      </div>
+              <Link to="/register" className="navbar-register">
+                Register
+              </Link>
+            </>
+          )}
 
-                      <p>
-                        No notifications
-                      </p>
-
-                    </div>
-                  ) : (
-
-                    /* NOTIFICATION LIST */
-
-                    <div className="notification-list">
-
-                      {notifications.map(
-                        (notification) => (
-
-                          <div
-                            key={
-                              notification._id
-                            }
-                            className={`notification-item ${
-                              !notification.isRead
-                                ? "unread"
-                                : ""
-                            }`}
-                            onClick={() =>
-                              handleNotificationClick(
-                                notification
-                              )
-                            }
-                          >
-
-                            {/* ICON */}
-
-                            <div className="notification-icon">
-
-                              {notification.type ===
-                              "NEW_CLAIM"
-                                ? "📩"
-                                : notification.type ===
-                                  "CLAIM_APPROVED"
-                                ? "✅"
-                                : notification.type ===
-                                  "CLAIM_REJECTED"
-                                ? "❌"
-                                : "🔔"}
-
-                            </div>
-
-                            {/* CONTENT */}
-
-                            <div className="notification-content">
-
-                              <h4>
-                                {
-                                  notification.title
-                                }
-                              </h4>
-
-                              <p>
-                                {
-                                  notification.message
-                                }
-                              </p>
-
-                              <span>
-                                {formatTime(
-                                  notification.createdAt
-                                )}
-                              </span>
-
-                            </div>
-
-                            {/* UNREAD DOT */}
-
-                            {!notification.isRead && (
-                              <span className="unread-dot">
-                                •
-                              </span>
-                            )}
-
-                          </div>
-
-                        )
-                      )}
-
-                    </div>
-                  )}
-
-                </div>
-              )}
-
-            </div>
-
-            {/* USER NAME REMOVED */}
-
-          </>
-        ) : (
-
-          /* LOGGED OUT */
-
-          <>
-            <Link to="/login">
-              Login
-            </Link>
-
-            <Link
-              to="/register"
-              className="register-btn"
-            >
-              Register
-            </Link>
-
-            <Link
-              to="/admin/login"
-              className="admin-login-btn"
-            >
-              Admin
-            </Link>
-          </>
-
-        )}
-
+        </div>
       </div>
-
     </nav>
   );
 }
 
 export default Navbar;
+

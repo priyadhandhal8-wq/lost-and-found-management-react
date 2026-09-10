@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Settings.css";
+import API_URL from "../api";
 
 function Settings() {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ function Settings() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/change-password",
+        `${API_URL}/api/users/change-password`,
         {
           method: "PUT",
 
@@ -180,7 +181,6 @@ function Settings() {
 
       <div className="settings-container">
 
-
         {/* Heading */}
 
         <h1>Settings</h1>
@@ -188,7 +188,6 @@ function Settings() {
         <p className="settings-subtitle">
           Manage your account and security settings
         </p>
-
 
         {/* =========================
             ACCOUNT
@@ -221,7 +220,6 @@ function Settings() {
           </div>
 
         </div>
-
 
         {/* =========================
             SECURITY
@@ -260,7 +258,6 @@ function Settings() {
 
           </div>
 
-
           {/* Password Form */}
 
           {showPasswordForm && (
@@ -288,7 +285,6 @@ function Settings() {
                 }
               />
 
-
               <label>
                 New Password
               </label>
@@ -304,7 +300,6 @@ function Settings() {
                   handlePasswordChange
                 }
               />
-
 
               <label>
                 Confirm New Password
@@ -322,7 +317,6 @@ function Settings() {
                 }
               />
 
-
               <button
                 type="submit"
                 className="save-password-btn"
@@ -333,7 +327,6 @@ function Settings() {
             </form>
           )}
 
-
           {/* Error */}
 
           {error && (
@@ -341,7 +334,6 @@ function Settings() {
               {error}
             </p>
           )}
-
 
           {/* Success */}
 
@@ -352,7 +344,6 @@ function Settings() {
           )}
 
         </div>
-
 
         {/* =========================
             ACCOUNT INFORMATION
@@ -378,7 +369,6 @@ function Settings() {
           </div>
 
         </div>
-
 
         {/* =========================
             LOGOUT

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminUsers.css";
+import API_URL from "../api";
 
 function AdminUsers() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function AdminUsers() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/admin/users",
+        `${API_URL}/api/admin/users`,
         {
           headers: {
             Authorization: `Bearer ${adminToken}`,
@@ -121,11 +122,11 @@ function AdminUsers() {
     e.preventDefault();
 
     try {
-      let url = "http://localhost:5000/api/admin/users";
+      let url = `${API_URL}/api/admin/users`;
       let method = "POST";
 
       if (editingUser) {
-        url = `http://localhost:5000/api/admin/users/${editingUser._id}`;
+        url = `${API_URL}/api/admin/users/${editingUser._id}`;
         method = "PUT";
       }
 
@@ -181,7 +182,7 @@ function AdminUsers() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/users/${userId}`,
+        `${API_URL}/api/admin/users/${userId}`,
         {
           method: "DELETE",
           headers: {

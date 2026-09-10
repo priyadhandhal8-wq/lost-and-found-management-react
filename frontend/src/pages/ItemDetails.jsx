@@ -1,7 +1,7 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ItemDetails.css";
+import API_URL from "../api";
 
 function ItemDetails() {
   const { id } = useParams();
@@ -95,7 +95,7 @@ function ItemDetails() {
       setLoading(true);
 
       const response = await fetch(
-        `http://localhost:5000/api/items/${id}`
+        `${API_URL}/api/items/${id}`
       );
 
       const data = await response.json();
@@ -126,12 +126,12 @@ function ItemDetails() {
       setMatchError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/items/${id}/matches`,
+        `${API_URL}/api/items/${id}/matches`,
         {
           headers: token
             ? {
-              Authorization: `Bearer ${token}`,
-            }
+                Authorization: `Bearer ${token}`,
+              }
             : {},
         }
       );
@@ -191,7 +191,7 @@ function ItemDetails() {
       setClaimLoading(true);
 
       const response = await fetch(
-        `http://localhost:5000/api/claims/${item._id}`,
+        `${API_URL}/api/claims/${item._id}`,
         {
           method: "POST",
           headers: {
@@ -267,7 +267,7 @@ function ItemDetails() {
   const getImageUrl = (image) => {
     if (!image) return null;
 
-    return `http://localhost:5000/uploads/${image}`;
+    return `${API_URL}/uploads/${image}`;
   };
 
   // ==========================================
@@ -375,6 +375,7 @@ function ItemDetails() {
             {/* ==================================
                 CLAIM SECTION
             ================================== */}
+
             {!isOwnItem() &&
               token && (
                 <div className="claim-section">
@@ -459,11 +460,12 @@ function ItemDetails() {
                   {claimMessageStatus && (
 
                     <div
-                      className={`claim-status-message ${claimMessageType ===
+                      className={`claim-status-message ${
+                        claimMessageType ===
                         "success"
-                        ? "success"
-                        : "error"
-                        }`}
+                          ? "success"
+                          : "error"
+                      }`}
                     >
                       {claimMessageStatus}
                     </div>

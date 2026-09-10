@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./MyItems.css";
+import API_URL from "../api";
 
 function MyItems() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function MyItems() {
         setError("");
 
         const response = await fetch(
-          "http://localhost:5000/api/items/my-items",
+          `${API_URL}/api/items/my-items`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -80,7 +81,7 @@ function MyItems() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/items/${itemId}`,
+        `${API_URL}/api/items/${itemId}`,
         {
           method: "DELETE",
           headers: {

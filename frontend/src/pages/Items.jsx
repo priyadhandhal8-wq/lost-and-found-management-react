@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Items.css";
+import API_URL from "../api";
 
 function Items() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function Items() {
         setError("");
 
         const response = await fetch(
-          "http://localhost:5000/api/items"
+          `${API_URL}/api/items`
         );
 
         const data = await response.json();
